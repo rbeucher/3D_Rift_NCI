@@ -42,7 +42,8 @@ GEO.scaling_coefficients["[temperature]"] = KT
 
 Model = GEO.Model(elementRes=(128, 128, 64), 
                   minCoord=(0. * u.kilometer, 0. * u.kilometer, -160. * u.kilometer), 
-                  maxCoord=(500. * u.kilometer, 500. * u.kilometer, 20. * u.kilometer), 
+                  maxCoord=(500. * u.kilometer, 500. * u.kilometer, 20. * u.kilometer),
+                  periodic=[False, True, False],
                   gravity=(0.0, 0.0, -9.81 * u.meter / u.second**2))
 
 
@@ -168,10 +169,8 @@ Model.set_temperatureBCs(top=293.15 * u.degK,
 
 velFunc = -Model.y / GEO.nd(Model.maxCoord[1]) * GEO.nd(2.0 * u.centimeter / u.year) + GEO.nd(2.5 * u.centimetre / u.year)
 
-Model.set_velocityBCs(left=[-1.0 * velFunc, None, None],
-                      right=[velFunc, None, None],
-                      back=[None, 0., None],
-                      front=[None, 0., None],
+Model.set_velocityBCs(left=[-2.5 * u.centimetre / u.year, None, None],
+                      right=[2.5 * u.centimetre / u.year, None, None],
                       bottom=GEO.LecodeIsostasy(reference_mat=mantle.index,
                                                 average=False))
 
