@@ -211,7 +211,7 @@ def post_hook():
 
 Model.postSolveHook = post_hook
 
-#Model.restart(step=228, restartDir="outputs")
-Model.run_for(20.0 * u.megayears, checkpoint_interval=0.02 * u.megayears)
+Model.run_for(nstep=10)
+Model.checkpoint(0)
 
 
