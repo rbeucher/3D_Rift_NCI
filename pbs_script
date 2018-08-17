@@ -8,11 +8,11 @@
 #PBS -l wd
 #PBS -N 3D_NCI
 
-module purge
-source /projects/Underworld/underworld-17May2018/updatePyPath.sh            
+module purge            
 module load pbs dot python/2.7.11 python/2.7.11-matplotlib openmpi/1.10.2 mpi4py/2.0.0 gcc/5.2.0
 
-export PYTHONPATH=/apps/underworld/opt/h5py/2.7.1-python_2.7/lib/python2.7/site-packages/:/projects/Underworld/underworld_development_05_21_2018:/projects/Underworld/underworld_development_05_21_2018/glucifer:/apps/underworld/opt/h5py/2.7.1-python_2.7/lib/python2.7/site-packages/:/apps/mpi4py/2.0.0/lib/python2.7/site-packages/ 
+source /projects/Underworld/underworld_development_05_21_2018/updatePyPath.sh
+export PYTHONPATH=/apps/underworld/opt/h5py/2.7.1-python_2.7/lib/python2.7/site-packages/:/apps/mpi4py/2.0.0/lib/python2.7/site-packages/ 
 
 export PYTHONPATH=$PYTHONPATH:$HOME/opt/UWGeodynamics
 
