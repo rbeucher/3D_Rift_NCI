@@ -15,7 +15,7 @@ try:
 except:
     factor = 1
 
-base_resolution = [128,64,64]
+base_resolution = [128,128,64]
 resolution      = [i * factor for i in base_resolution]
 
 
