@@ -7,6 +7,16 @@
 
 
 import UWGeodynamics as GEO
+import os
+
+# get resolution factor for NCI testing
+try:
+    factor = int(os.environ["UW_RESFACTOR"])
+except:
+    factor = 1
+
+base_resolution = [128,64,64]
+resolution      = [i * factor for i in base_resolution]
 
 
 # In[2]:
@@ -40,7 +50,7 @@ GEO.scaling_coefficients["[temperature]"] = KT
 # In[4]:
 
 
-Model = GEO.Model(elementRes=(128, 128, 64), 
+Model = GEO.Model(elementRes=resolution, 
                   minCoord=(0. * u.kilometer, 0. * u.kilometer, -160. * u.kilometer), 
                   maxCoord=(500. * u.kilometer, 500. * u.kilometer, 20. * u.kilometer),
                   periodic=[False, True, False],

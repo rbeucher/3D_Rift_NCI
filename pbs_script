@@ -14,12 +14,20 @@ module load pbs dot python/2.7.11 python/2.7.11-matplotlib openmpi/1.10.2 mpi4py
 source /projects/Underworld/underworld_development_05_21_2018/updatePyPath.sh
 export PYTHONPATH=/apps/underworld/opt/h5py/2.7.1-python_2.7/lib/python2.7/site-packages/:/apps/mpi4py/2.0.0/lib/python2.7/site-packages/ 
 
-export PYTHONPATH=$PYTHONPATH:$HOME/opt/UWGeodynamics
+export PYTHONPATH=$PYTHONPATH:path/to/UWGeodynamics
 
 #MODELNAME=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
 MODELNAME="3D_NCI"
 OUTPUTPATH=`pwd`
 SCRIPT="3D_Rift_NCI.py"
 
-mpiexec --mca mpi_warn_on_fork 0 --mca opal_abort_print_stack 1 --mca mpi_param_check 1 --mca mpi_add_procs_cutoff 256 python ./$SCRIPT 1> $OUTPUTPATH/$MODELNAME.$PBS_JOBID.log 2> $OUTPUTPATH/$MODELNAME.$PBS_JOBID.err
+export UW_RESFACTOR = "1"
+
+mpiexec --mca mpi_warn_on_fork 0 \
+  --mca opal_abort_print_stack 1 \
+  --mca mpi_param_check 1        \
+  --mca mpi_add_procs_cutoff 256 \
+  python ./$SCRIPT               \ 
+  1> $OUTPUTPATH/$MODELNAME.$UW_RESFACTOR.$PBS_JOBID.log \
+  2> $OUTPUTPATH/$MODELNAME.$UW_RESFACTOR.$PBS_JOBID.err
 
