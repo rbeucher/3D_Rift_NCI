@@ -49,13 +49,11 @@ GEO.scaling_coefficients["[temperature]"] = KT
 
 # In[4]:
 
-
 Model = GEO.Model(elementRes=resolution, 
                   minCoord=(0. * u.kilometer, 0. * u.kilometer, -160. * u.kilometer), 
                   maxCoord=(500. * u.kilometer, 500. * u.kilometer, 20. * u.kilometer),
                   periodic=[False, True, False],
                   gravity=(0.0, 0.0, -9.81 * u.meter / u.second**2))
-
 
 # In[5]:
 
